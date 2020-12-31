@@ -2,7 +2,7 @@ import os
 import csv
 
 
-csvpath = os.path.join('..', 'but-ind-data-pt-12-2020-u-c', 'Week-03-Python', 'Homework', 'Instructions', 'PyPoll', 'Resources', 'election_data.csv')
+csvpath = os.path.join('..', 'Resources', 'election_data.csv')
 #print (csvpath)
 with open(csvpath) as csvfile:
     
@@ -10,6 +10,5 @@ with open(csvpath) as csvfile:
     # removes the header row
     next (csvreader)
     for row in csvreader:
-        print(row)
-        
-break
+       # print(row)
+
