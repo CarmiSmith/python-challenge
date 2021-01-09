@@ -8,11 +8,10 @@ csvpath = os.path.join('Resources', 'election_data.csv')
 #giving definition
 candidate = {}
 candidate_list = []
-values = candidate.values()
 number_votes = []    
 total_votes_cast = 0
 candidate_percentage = 0
-
+highest_vote = 0
 
 
 with open(csvpath) as csvfile:    
@@ -47,6 +46,7 @@ with open(csvpath) as csvfile:
     fileoutput.write(f"Election Results\n")  
     fileoutput.write(f"-------------------------\n") 
     fileoutput.write(f"Total Votes: {total_votes_cast}\n")
+    fileoutput.write(f"-------------------------\n")
 
     #putting candidates in a list
     for name in candidate_list:
@@ -56,14 +56,17 @@ with open(csvpath) as csvfile:
         candidate_percentage = ((number_votes /total_votes_cast) * 100)
 
         #printing my results
-        print(f"{name}: {round(candidate_percentage)}% {str(candidate[name])}")
+        print(f"{name}: {candidate_percentage:.3f}% {str(candidate[name])}")
 
         #exporting results to text file
-        fileoutput.write(f"{name}: {round(candidate_percentage)}% {str(candidate[name])}\n")
+        fileoutput.write(f"{name}: {candidate_percentage:.3f}% {str(candidate[name])}\n")
 
-        #pulling winners name
-        winner = max(name, str(candidate[candidate_name]))
-
+    #pulling winners name
+    for key in candidate.keys():
+        if candidate[key] > highest_vote:
+            winner = key 
+            highest_vote = candidate[key]
+    
     #printing my results
     print("-------------------------")
     print(f"Winner: {winner}")     
